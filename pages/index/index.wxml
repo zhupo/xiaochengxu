@@ -1,13 +1,33 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class='search-wrap'>
+    <input placeholder='微商交流' />
+    <button><icon type='search' size='14'></icon></button>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">优质群推荐</view>
+    <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">优质个人推荐</view>
+    <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">公众号推荐</view>
   </view>
+
+  <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab">
+      <swiper-item>
+        <view class='qun-wrap code-item' wx:for="{{qunLists}}" wx:key='{{index}}'>
+          <image src='{{item.src}}'></image>
+          <view class='content-item'>{{item.content}}</view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='personal-wrap code-item' wx:for="{{personalLists}}" wx:key='{{index}}'>
+          <image src='{{item.src}}'></image>
+          <view class='content-item'>{{item.content}}</view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class='gzh-wrap code-item' wx:for="{{gzhLists}}" wx:key='{{index}}'>
+          <image src='{{item.src}}'></image>
+          <view class='content-item'>{{item.content}}</view>
+        </view>
+      </swiper-item>
+  </swiper>
 </view>
