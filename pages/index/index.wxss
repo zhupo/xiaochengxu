@@ -54,10 +54,13 @@ swiper-item {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  overflow-y: auto;
+  height: unset !important;
 }
 .code-item {
   width: 30%;
   margin-top: 40rpx;
+  height: 260rpx;
   margin-right: 5%;
 }
 .code-item:nth-child(3n+3) {

@@ -13,19 +13,19 @@
   <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab">
       <swiper-item>
         <view class='qun-wrap code-item' wx:for="{{qunLists}}" wx:key='{{index}}'>
-          <image src='{{item.src}}'></image>
+          <image bindtap='previewImages' data-index="{{index}}" src='{{item.src}}'></image>
           <view class='content-item'>{{item.content}}</view>
         </view>
       </swiper-item>
       <swiper-item>
         <view class='personal-wrap code-item' wx:for="{{personalLists}}" wx:key='{{index}}'>
-          <image src='{{item.src}}'></image>
+          <image bindtap='previewImages' data-index="{{index}}" src='{{item.src}}'></image>
           <view class='content-item'>{{item.content}}</view>
         </view>
       </swiper-item>
       <swiper-item>
         <view class='gzh-wrap code-item' wx:for="{{gzhLists}}" wx:key='{{index}}'>
-          <image src='{{item.src}}'></image>
+          <image bindtap='previewImages' data-index="{{index}}" src='{{item.src}}'></image>
           <view class='content-item'>{{item.content}}</view>
         </view>
       </swiper-item>
