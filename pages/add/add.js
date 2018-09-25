@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    imgSrc: '',
+    signArr: [],
+    signInput: ''
   },
 
   /**
@@ -13,6 +15,55 @@ Page({
    */
   onLoad: function (options) {
   
+  },
+
+  getSignInputValue (e) {
+    this.setData({
+      signInput: e.detail.value
+    })
+  },
+
+  addSign () {
+    if (this.data.signArr.length < 4) {
+      if (this.data.signInput !== '') {
+        if (!this.data.signArr.includes(this.data.signInput)) {
+          this.data.signArr.push(this.data.signInput)
+          this.setData({
+            signArr: this.data.signArr,
+            signInput: ''
+          })
+        } else {
+          wx.showToast({
+            title: '该标签已添加',
+            icon: 'none'
+          })
+        }
+      }
+    } else {
+      wx.showToast({
+        title: '最多添加四个标签',
+        icon: 'none'
+      })
+    }
+  },
+
+  deleteSign (e) {
+    let name = e.currentTarget.dataset.name
+    let arr = this.data.signArr.filter(val => val !== name)
+    this.setData({
+      signArr: arr
+    })
+  },
+
+  chooseImg () {
+    let t = this
+    wx.chooseImage({
+      success: function(res) {
+        t.setData({
+          imgSrc: res.tempFilePaths
+        })
+      },
+    })
   },
 
   /**

@@ -100,6 +100,8 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    this.login()
+    this.getLists()
 
   },
   //滑动切换
@@ -140,6 +142,26 @@ Page({
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},
+    })
+  },
+  login () {
+    wx.request({
+      url: app.globalData.baseUrl + 'login',
+      data: app.globalData.userInfo,
+      success: res => {
+        console.log(res)
+      }
+    })
+  },
+  getLists() {
+    console.log(app.globalData)
+    console.log(app.globalData.userInfo)
+    wx.request({
+      url: app.globalData.baseUrl + 'resource',
+      data: app.globalData.userInfo,
+      success: res => {
+        console.log(res)
+      }
     })
   }
 })

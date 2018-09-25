@@ -1,11 +1,20 @@
 <!--pages/add/add.wxml-->
 <view class='container'>
-  <view class='add-code'>+</view>
+  <view class='add-code' bindtap='chooseImg'>
+    <image src='{{imgSrc}}' wx:if="{{imgSrc}}"></image>
+    <view wx:else>+</view>
+  </view>
   <view class='add-sign'>
     <text class='add-label'>添加标签</text>
     <view class='add-operation'>
-      <input placeholder='请输入标签(最多四个)'></input>
-      <button size='mini'>添加</button>
+      <input placeholder='请输入标签(最多四个)' bindinput='getSignInputValue' value="{{signInput}}"></input>
+      <button size='mini' bindtap='addSign'>添加</button>
+    </view>
+    <view class='sign-wrap'>
+      <view class='sign-item' wx:for="{{signArr}}" wx:key="{{index}}">
+        <text>{{item}}</text>
+        <view class='clear' bindtap='deleteSign' data-name="{{item}}"><icon size='14' type='clear'></icon></view>
+      </view>
     </view>
     <button class='submit' size='mini' type='primary'>确定</button>
   </view>

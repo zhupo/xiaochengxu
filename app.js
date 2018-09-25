@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    baseUrl: 'https://small.cyplay.cn/public/index.php/index/share.tool/'
   }
 })
