@@ -9,6 +9,7 @@ App({
     // 登录
     wx.login({
       success: res => {
+        this.globalData.code = res.code
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -21,7 +22,6 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -30,6 +30,18 @@ App({
             }
           })
         }
+      }
+    })
+  },
+  userInfoReadyCallback (res) {
+    let params = Object.assign(this.globalData.userInfo, {
+      js_code: this.globalData.code
+    })
+    wx.request({
+      url: this.globalData.baseUrl + 'login',
+      data: params,
+      success: res => {
+        console.log(res)
       }
     })
   },
