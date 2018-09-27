@@ -34,9 +34,9 @@ App({
     })
   },
   userInfoReadyCallback (res) {
-    let params = Object.assign(this.globalData.userInfo, {
-      js_code: this.globalData.code
-    })
+    let params = Object.assign({
+      code: this.globalData.code
+    }, this.globalData.userInfo)
     wx.request({
       url: this.globalData.baseUrl + 'login',
       data: params,

@@ -96,7 +96,10 @@ Page({
         src: '',
         content: '121sdfasddasdfa3123'
       }
-    ]
+    ],
+    tab: 0,
+    page: 1,
+    limit: 10
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -144,11 +147,15 @@ Page({
     })
   },
   getLists() {
-    console.log(app.globalData)
-    console.log(app.globalData.userInfo)
+    let params = Object.assign({
+      tab: this.data.tab,
+      page: this.data.page,
+      limit: this.data.limit
+    }, app.globalData.userInfo)
+
     wx.request({
       url: app.globalData.baseUrl + 'resource',
-      data: app.globalData.userInfo,
+      data: params,
       success: res => {
         console.log(res)
       }

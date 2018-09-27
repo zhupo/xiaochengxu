@@ -18,6 +18,34 @@ Page({
     console.log(app)
   },
 
+  confirmAdd () {
+    let params = {
+      userId: '',
+      tag: this.data.signArr.join(',')
+    }
+    wx.uploadFile({
+      url: app.globalData.baseUrl + 'uploads',
+      filePath: this.data.imgSrc[0],
+      name: 'image',
+      formData: params,
+      success: res => {
+        let data = JSON.parse(res.data)
+        console.log(data)
+        if (data.code === 100) {
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none'
+          })
+        } else {
+          wx.showToast({
+            title: decodeURI(data.msg),
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+
   getSignInputValue (e) {
     this.setData({
       signInput: e.detail.value

@@ -16,6 +16,6 @@
         <view class='clear' bindtap='deleteSign' data-name="{{item}}"><icon size='14' type='clear'></icon></view>
       </view>
     </view>
-    <button class='submit' size='mini' type='primary'>确定</button>
+    <button class='submit' size='mini' type='primary' bindtap='confirmAdd'>确定</button>
   </view>
 </view>
